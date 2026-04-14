@@ -482,6 +482,15 @@ a.edu-name:hover {
   opacity: 0.4;
 }
 
+/* === GPG fingerprint === */
+.gpg-fingerprint {
+  margin-top: 20px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: rgba(0, 255, 100, 0.25);
+  font-family: 'Courier New', Courier, monospace;
+}
+
 /* === Print-only elements (hidden on screen) === */
 .print-contact {
   display: none;
