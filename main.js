@@ -157,7 +157,7 @@
   function initParticles() {
     particles.length = 0;
     const count = Math.floor((gridCanvas.width * gridCanvas.height) / 35000);
-    const colors = ['0, 255, 100', '0, 180, 255', '140, 80, 255'];
+    const colors = ['255, 50, 150', '0, 180, 255', '160, 80, 255'];
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * gridCanvas.width,
@@ -268,16 +268,16 @@
     }
 
     // Constellation — connect particles near cursor
-    const CONST_RADIUS = 130;
-    const LINK_RADIUS  = 90;
+    const CONST_RADIUS = 170;
+    const LINK_RADIUS  = 110;
     const near = particles.filter((p) => Math.hypot(p.x - mouseX, p.y - mouseY) < CONST_RADIUS);
-    gridCtx.lineWidth = 0.6;
     for (const p of near) {
       const d = Math.hypot(p.x - mouseX, p.y - mouseY);
       gridCtx.beginPath();
       gridCtx.moveTo(mouseX, mouseY);
       gridCtx.lineTo(p.x, p.y);
-      gridCtx.strokeStyle = `rgba(${p.color}, ${(1 - d / CONST_RADIUS) * 0.45})`;
+      gridCtx.strokeStyle = `rgba(${p.color}, ${(1 - d / CONST_RADIUS) * 0.7})`;
+      gridCtx.lineWidth = 1;
       gridCtx.stroke();
     }
     for (let i = 0; i < near.length; i++) {
@@ -287,7 +287,8 @@
           gridCtx.beginPath();
           gridCtx.moveTo(near[i].x, near[i].y);
           gridCtx.lineTo(near[j].x, near[j].y);
-          gridCtx.strokeStyle = `rgba(${near[i].color}, ${(1 - d / LINK_RADIUS) * 0.25})`;
+          gridCtx.strokeStyle = `rgba(${near[i].color}, ${(1 - d / LINK_RADIUS) * 0.45})`;
+          gridCtx.lineWidth = 0.8;
           gridCtx.stroke();
         }
       }
