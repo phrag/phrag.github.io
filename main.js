@@ -61,25 +61,55 @@
     });
   });
 
-  // --- Text scramble on nav hover ---
+  // --- Text scramble ---
   const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%><|/\\';
-  function scramble(el, original) {
+
+  function scramble(el) {
+    const savedHTML = el.innerHTML;
+    const text = el.textContent;
+    if (!text.trim()) return;
+    if (el._scrambling) return;
+    el._scrambling = true;
     let frame = 0;
-    const frames = 18;
+    const frames = 22;
     const id = setInterval(() => {
-      if (frame >= frames) { el.textContent = original; clearInterval(id); return; }
+      if (frame >= frames) {
+        el.innerHTML = savedHTML;
+        el._scrambling = false;
+        clearInterval(id);
+        return;
+      }
       const progress = frame / frames;
-      el.textContent = original.split('').map((ch, i) => {
-        if (ch === ' ') return ' ';
-        if (i / original.length < progress) return ch;
+      el.textContent = text.split('').map((ch, i) => {
+        if (ch === ' ' || ch === '\n') return ch;
+        if (i / text.length < progress) return ch;
         return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
       }).join('');
       frame++;
     }, 28);
   }
+
+  // Nav links
   navLinks.forEach((link) => {
-    const orig = link.textContent;
-    link.addEventListener('mouseenter', () => scramble(link, orig));
+    link.addEventListener('mouseenter', () => scramble(link));
+  });
+
+  // Headings and short labels throughout the page
+  document.querySelectorAll(
+    '.section-title, .subsection-title, .job-title, .edu-name, .skill-label, .hero-tags, .job-meta'
+  ).forEach((el) => {
+    el.addEventListener('mouseenter', () => scramble(el));
+  });
+
+  // First-load: scramble hero title, tags, and nav links in sequence
+  window.addEventListener('load', () => {
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) setTimeout(() => scramble(heroTitle), 300);
+    const heroTags = document.querySelector('.hero-tags');
+    if (heroTags) setTimeout(() => scramble(heroTags), 550);
+    navLinks.forEach((link, i) => {
+      setTimeout(() => scramble(link), 150 + i * 100);
+    });
   });
 
   // --- Mobile hamburger ---
