@@ -507,7 +507,7 @@ a.edu-name:hover {
 }
 
 /* === Mobile === */
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .sidebar {
     position: fixed;
     width: 100%;
