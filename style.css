@@ -550,9 +550,9 @@ a.edu-name:hover {
   }
 
   .section {
-    padding: 80px 20px 36px;
+    padding: 48px 20px 24px;
     max-width: 100%;
-    min-height: 100vh;
+    min-height: auto;
     scroll-snap-align: none;
     opacity: 1;
     transform: none;
