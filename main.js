@@ -71,7 +71,7 @@
     if (el._scrambling) return;
     el._scrambling = true;
     let frame = 0;
-    const frames = 22;
+    const frames = 14;
     const id = setInterval(() => {
       if (frame >= frames) {
         el.innerHTML = savedHTML;
@@ -86,7 +86,7 @@
         return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
       }).join('');
       frame++;
-    }, 28);
+    }, 18);
   }
 
   // Nav links
