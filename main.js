@@ -12,7 +12,11 @@
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
+          entry.target.classList.add('visible');
+          const title = entry.target.querySelector('.section-title');
+          if (title) setTimeout(() => scramble(title), 120);
+        }
       });
     },
     { threshold: 0.12 }
