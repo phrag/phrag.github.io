@@ -15,7 +15,7 @@ body {
   height: 100vh;
   display: flex;
   overflow: hidden;
-  background: linear-gradient(135deg, #0a0414 0%, #0d0620 30%, #080a18 60%, #120818 100%);
+  background: linear-gradient(135deg, #0f0820 0%, #160a2e 30%, #0c0a1e 60%, #1a0c28 100%);
   color: rgba(255, 255, 255, 0.7);
   background-attachment: fixed;
 }
@@ -558,7 +558,7 @@ a.edu-name:hover {
     height: 100vh;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    background: linear-gradient(135deg, #0a0414 0%, #0d0620 50%, #080a18 100%);
+    background: linear-gradient(135deg, #0f0820 0%, #160a2e 50%, #0c0a1e 100%);
     z-index: 100;
   }
 
