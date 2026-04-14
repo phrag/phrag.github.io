@@ -91,9 +91,9 @@
       axis,
       line,
       pos: 0,
-      speed: 0.8 + Math.random() * 1.4,
-      alpha: 0.2 + Math.random() * 0.25,
-      tail: 60 + Math.random() * 60,
+      speed: 1.2 + Math.random() * 2,
+      alpha: 0.55 + Math.random() * 0.35,
+      tail: 100 + Math.random() * 100,
       color: colors[Math.floor(Math.random() * colors.length)],
     });
   }
@@ -125,7 +125,7 @@
       grad.addColorStop(0, `rgba(${p.color}, 0)`);
       grad.addColorStop(1, `rgba(${p.color}, ${p.alpha})`);
       gridCtx.strokeStyle = grad;
-      gridCtx.lineWidth = 1.5;
+      gridCtx.lineWidth = 2;
       gridCtx.beginPath();
       if (p.axis === 'h') {
         gridCtx.moveTo(Math.max(0, p.pos - p.tail), p.line);
@@ -142,7 +142,7 @@
     }
 
     // Randomly spawn new pulses (max 6 at once)
-    if (pulses.length < 6 && Math.random() < 0.015) spawnPulse();
+    if (pulses.length < 10 && Math.random() < 0.03) spawnPulse();
 
     requestAnimationFrame(drawDynamicGrid);
   }
