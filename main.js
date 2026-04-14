@@ -1,6 +1,12 @@
 (() => {
   'use strict';
 
+  // Disable browser scroll restoration so refresh always starts at top
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('load', () => {
+    document.querySelector('.content').scrollTop = 0;
+  });
+
   // --- Scroll-triggered section visibility ---
   const sections = document.querySelectorAll('.section');
   const observer = new IntersectionObserver(

@@ -550,12 +550,16 @@ a.edu-name:hover {
   }
 
   .section {
-    padding: 48px 20px 24px;
+    padding: 48px 20px 32px;
     max-width: 100%;
     min-height: auto;
     scroll-snap-align: none;
     opacity: 1;
     transform: none;
+  }
+
+  .section:last-child {
+    padding-bottom: 64px;
   }
 
   .content {
