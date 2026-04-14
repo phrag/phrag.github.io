@@ -68,6 +68,87 @@
     sidebar.classList.toggle('open');
   });
 
+  // --- Dynamic grid canvas ---
+  const gridCanvas = document.getElementById('grid-canvas');
+  const gridCtx = gridCanvas.getContext('2d');
+  const CELL = 60;
+  const pulses = [];
+
+  function resizeGrid() {
+    gridCanvas.width = window.innerWidth;
+    gridCanvas.height = window.innerHeight;
+  }
+
+  function spawnPulse() {
+    const axis = Math.random() > 0.5 ? 'h' : 'v';
+    const cols = Math.floor(gridCanvas.width / CELL);
+    const rows = Math.floor(gridCanvas.height / CELL);
+    const line = (axis === 'h'
+      ? Math.floor(Math.random() * rows)
+      : Math.floor(Math.random() * cols)) * CELL;
+    pulses.push({
+      axis,
+      line,
+      pos: 0,
+      speed: 0.8 + Math.random() * 1.4,
+      alpha: 0.2 + Math.random() * 0.25,
+      tail: 60 + Math.random() * 60,
+    });
+  }
+
+  function drawDynamicGrid() {
+    const w = gridCanvas.width;
+    const h = gridCanvas.height;
+    gridCtx.clearRect(0, 0, w, h);
+
+    // Static base grid
+    gridCtx.lineWidth = 1;
+    gridCtx.strokeStyle = 'rgba(0, 255, 100, 0.04)';
+    for (let x = 0; x <= w; x += CELL) {
+      gridCtx.beginPath(); gridCtx.moveTo(x, 0); gridCtx.lineTo(x, h); gridCtx.stroke();
+    }
+    for (let y = 0; y <= h; y += CELL) {
+      gridCtx.beginPath(); gridCtx.moveTo(0, y); gridCtx.lineTo(w, y); gridCtx.stroke();
+    }
+
+    // Travelling pulses
+    for (let i = pulses.length - 1; i >= 0; i--) {
+      const p = pulses[i];
+      let grad;
+      if (p.axis === 'h') {
+        grad = gridCtx.createLinearGradient(p.pos - p.tail, 0, p.pos, 0);
+      } else {
+        grad = gridCtx.createLinearGradient(0, p.pos - p.tail, 0, p.pos);
+      }
+      grad.addColorStop(0, 'rgba(0, 255, 100, 0)');
+      grad.addColorStop(1, `rgba(0, 255, 100, ${p.alpha})`);
+      gridCtx.strokeStyle = grad;
+      gridCtx.lineWidth = 1.5;
+      gridCtx.beginPath();
+      if (p.axis === 'h') {
+        gridCtx.moveTo(Math.max(0, p.pos - p.tail), p.line);
+        gridCtx.lineTo(p.pos, p.line);
+      } else {
+        gridCtx.moveTo(p.line, Math.max(0, p.pos - p.tail));
+        gridCtx.lineTo(p.line, p.pos);
+      }
+      gridCtx.stroke();
+
+      p.pos += p.speed;
+      const limit = p.axis === 'h' ? w : h;
+      if (p.pos - p.tail > limit) pulses.splice(i, 1);
+    }
+
+    // Randomly spawn new pulses (max 6 at once)
+    if (pulses.length < 6 && Math.random() < 0.015) spawnPulse();
+
+    requestAnimationFrame(drawDynamicGrid);
+  }
+
+  resizeGrid();
+  drawDynamicGrid();
+  window.addEventListener('resize', resizeGrid);
+
   // --- Film grain canvas ---
   const canvas = document.getElementById('grain');
   const ctx = canvas.getContext('2d');

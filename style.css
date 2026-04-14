@@ -15,7 +15,7 @@ body {
   height: 100vh;
   display: flex;
   overflow: hidden;
-  background: linear-gradient(135deg, #0f0820 0%, #160a2e 30%, #0c0a1e 60%, #1a0c28 100%);
+  background: linear-gradient(135deg, #040a06 0%, #061208 30%, #0a0f0a 60%, #080d0a 100%);
   color: rgba(255, 255, 255, 0.7);
   background-attachment: fixed;
 }
@@ -438,16 +438,14 @@ a.edu-name:hover {
   animation: aura-drift 16s ease-in-out infinite alternate-reverse;
 }
 
-.grid-overlay {
-  position: absolute;
+#grid-canvas {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    linear-gradient(rgba(0, 255, 100, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 100, 0.015) 1px, transparent 1px);
-  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .scanlines {
@@ -558,7 +556,7 @@ a.edu-name:hover {
     height: 100vh;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    background: linear-gradient(135deg, #0f0820 0%, #160a2e 50%, #0c0a1e 100%);
+    background: linear-gradient(135deg, #040a06 0%, #061208 50%, #0a0f0a 100%);
     z-index: 100;
   }
 
