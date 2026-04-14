@@ -82,7 +82,7 @@
   const CELL = 60;
   const pulses = [];
   const particles = [];
-  const PULSE_COLORS = ['0, 255, 100', '0, 180, 255', '100, 120, 255'];
+  const PULSE_COLORS = ['255, 50, 150', '0, 180, 255', '255, 0, 200'];
 
   function getSidebarWidth() {
     return window.innerWidth > 960 ? 280 : 0;
@@ -255,38 +255,76 @@
   window.addEventListener('resize', resizeGlitch);
 
   function runGlitch() {
-    const flashes = 2 + Math.floor(Math.random() * 3);
-    let flash = 0;
     const w = glitchCanvas.width;
     const h = glitchCanvas.height;
+    const hueShift = 25 + Math.random() * 55;
 
-    function glitchFrame() {
-      glitchCtx.clearRect(0, 0, w, h);
-      if (flash >= flashes) return;
-      flash++;
-
-      const strips = 4 + Math.floor(Math.random() * 6);
-      for (let i = 0; i < strips; i++) {
+    function drawStrips(count, maxOffset, alpha, noise) {
+      for (let i = 0; i < count; i++) {
         const sy  = Math.random() * h;
-        const sh  = 1 + Math.random() * 14;
-        const off = (Math.random() - 0.5) * 24;
-        // Chromatic aberration
-        glitchCtx.fillStyle = 'rgba(255, 0, 80, 0.1)';
-        glitchCtx.fillRect(off - 5, sy, w, sh);
-        glitchCtx.fillStyle = 'rgba(0, 200, 255, 0.1)';
-        glitchCtx.fillRect(off + 5, sy, w, sh);
-        // White tear
-        glitchCtx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-        glitchCtx.fillRect(off, sy, w, sh * 0.4);
+        const sh  = 2 + Math.random() * 22;
+        const off = (Math.random() - 0.5) * maxOffset;
+        // Pink/red channel left
+        glitchCtx.fillStyle = `rgba(255, 20, 100, ${alpha})`;
+        glitchCtx.fillRect(off - 10, sy, w, sh);
+        // Cyan channel right
+        glitchCtx.fillStyle = `rgba(0, 220, 255, ${alpha})`;
+        glitchCtx.fillRect(off + 10, sy, w, sh);
+        // Bright tear
+        glitchCtx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.35})`;
+        glitchCtx.fillRect(off, sy, w, sh * 0.25);
+        // Random noise line
+        if (noise && Math.random() > 0.45) {
+          glitchCtx.fillStyle = `rgba(${Math.random() > 0.5 ? '255, 50, 150' : '0, 230, 255'}, ${alpha * 0.7})`;
+          glitchCtx.fillRect(0, Math.random() * h, w, 1);
+        }
       }
+      // Occasional large displaced block
+      if (Math.random() > 0.5) {
+        const by  = Math.random() * h;
+        const bh  = 10 + Math.random() * 32;
+        const bx  = (Math.random() - 0.5) * 70;
+        glitchCtx.fillStyle = 'rgba(255, 40, 160, 0.07)';
+        glitchCtx.fillRect(bx, by, w * 0.65, bh);
+      }
+    }
+
+    // Phase 1: pre-flash
+    glitchCtx.fillStyle = 'rgba(200, 0, 120, 0.04)';
+    glitchCtx.fillRect(0, 0, w, h);
+    document.body.style.filter = `hue-rotate(${hueShift}deg) saturate(1.8) brightness(1.08)`;
+
+    setTimeout(() => {
+      glitchCtx.clearRect(0, 0, w, h);
+      // Phase 2: main burst
+      drawStrips(8 + Math.floor(Math.random() * 6), 55, 0.15, true);
 
       setTimeout(() => {
         glitchCtx.clearRect(0, 0, w, h);
-        if (flash < flashes) setTimeout(glitchFrame, 30 + Math.random() * 60);
-      }, 50 + Math.random() * 80);
-    }
+        document.body.style.filter = '';
 
-    glitchFrame();
+        // Phase 3: aftershock
+        if (Math.random() > 0.2) {
+          setTimeout(() => {
+            document.body.style.filter = `hue-rotate(${-hueShift * 0.5}deg) brightness(0.94)`;
+            drawStrips(4 + Math.floor(Math.random() * 4), 30, 0.1, false);
+
+            setTimeout(() => {
+              glitchCtx.clearRect(0, 0, w, h);
+              document.body.style.filter = '';
+
+              // Phase 4: final twitch
+              if (Math.random() > 0.4) {
+                setTimeout(() => {
+                  drawStrips(2 + Math.floor(Math.random() * 3), 18, 0.07, false);
+                  setTimeout(() => glitchCtx.clearRect(0, 0, w, h), 35 + Math.random() * 40);
+                }, 50 + Math.random() * 70);
+              }
+            }, 60 + Math.random() * 90);
+          }, 90 + Math.random() * 110);
+        }
+      }, 80 + Math.random() * 110);
+    }, 20 + Math.random() * 30);
   }
 
   (function scheduleGlitch() {
