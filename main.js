@@ -101,8 +101,10 @@
     el.addEventListener('mouseenter', () => scramble(el));
   });
 
-  // First-load: scramble hero title, tags, and nav links in sequence
+  // First-load: scramble name, hero title, tags, and nav links in sequence
   window.addEventListener('load', () => {
+    const name = document.querySelector('.sidebar-name');
+    if (name) setTimeout(() => scramble(name), 100);
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) setTimeout(() => scramble(heroTitle), 300);
     const heroTags = document.querySelector('.hero-tags');
