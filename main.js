@@ -120,13 +120,6 @@
     sidebar.classList.toggle('open');
   });
 
-  // --- Cursor glow ---
-  const cursorGlow = document.querySelector('.cursor-glow');
-  document.addEventListener('mousemove', (e) => {
-    cursorGlow.style.left = e.clientX + 'px';
-    cursorGlow.style.top = e.clientY + 'px';
-  });
-
   // --- Dynamic grid canvas ---
   const gridCanvas = document.getElementById('grid-canvas');
   const gridCtx = gridCanvas.getContext('2d');

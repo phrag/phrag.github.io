@@ -15,7 +15,7 @@ body {
   height: 100vh;
   display: flex;
   overflow: hidden;
-  background: linear-gradient(135deg, #0f0820 0%, #160a2e 30%, #0c0a1e 60%, #1a0c28 100%);
+  background: linear-gradient(135deg, #070312 0%, #0e0620 30%, #080815 60%, #110618 100%);
   color: rgba(255, 255, 255, 0.7);
   background-attachment: fixed;
 }
@@ -480,20 +480,6 @@ a.edu-name:hover {
   opacity: 0.4;
 }
 
-/* === Cursor glow === */
-.cursor-glow {
-  position: fixed;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(110, 50, 255, 0.07) 0%, transparent 70%);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  transition: left 0.1s ease-out, top 0.1s ease-out;
-  left: -999px;
-  top: -999px;
-}
 
 /* === Glitch canvas === */
 #glitch-canvas {
@@ -632,7 +618,7 @@ a.edu-name:hover {
     height: 100vh;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    background: linear-gradient(135deg, #0f0820 0%, #160a2e 50%, #0c0a1e 100%);
+    background: linear-gradient(135deg, #070312 0%, #0e0620 50%, #080815 100%);
     z-index: 100;
   }
 
