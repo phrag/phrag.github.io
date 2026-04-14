@@ -61,6 +61,27 @@
     });
   });
 
+  // --- Text scramble on nav hover ---
+  const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%><|/\\';
+  function scramble(el, original) {
+    let frame = 0;
+    const frames = 18;
+    const id = setInterval(() => {
+      if (frame >= frames) { el.textContent = original; clearInterval(id); return; }
+      const progress = frame / frames;
+      el.textContent = original.split('').map((ch, i) => {
+        if (ch === ' ') return ' ';
+        if (i / original.length < progress) return ch;
+        return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+      }).join('');
+      frame++;
+    }, 28);
+  }
+  navLinks.forEach((link) => {
+    const orig = link.textContent;
+    link.addEventListener('mouseenter', () => scramble(link, orig));
+  });
+
   // --- Mobile hamburger ---
   const hamburger = document.querySelector('.hamburger');
   const sidebar = document.querySelector('.sidebar');
@@ -82,7 +103,21 @@
   const CELL = 60;
   const pulses = [];
   const particles = [];
+  const ripples = [];
   const PULSE_COLORS = ['255, 50, 150', '0, 180, 255', '255, 0, 200'];
+  let mouseX = -9999, mouseY = -9999;
+
+  document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+
+  document.addEventListener('click', (e) => {
+    ripples.push({
+      x: e.clientX, y: e.clientY,
+      r: 0,
+      maxR: 180 + Math.random() * 120,
+      alpha: 0.9,
+      color: PULSE_COLORS[Math.floor(Math.random() * PULSE_COLORS.length)],
+    });
+  });
 
   function getSidebarWidth() {
     return window.innerWidth > 960 ? 280 : 0;
@@ -199,6 +234,53 @@
       gridCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       gridCtx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
       gridCtx.fill();
+    }
+
+    // Constellation — connect particles near cursor
+    const CONST_RADIUS = 130;
+    const LINK_RADIUS  = 90;
+    const near = particles.filter((p) => Math.hypot(p.x - mouseX, p.y - mouseY) < CONST_RADIUS);
+    gridCtx.lineWidth = 0.6;
+    for (const p of near) {
+      const d = Math.hypot(p.x - mouseX, p.y - mouseY);
+      gridCtx.beginPath();
+      gridCtx.moveTo(mouseX, mouseY);
+      gridCtx.lineTo(p.x, p.y);
+      gridCtx.strokeStyle = `rgba(${p.color}, ${(1 - d / CONST_RADIUS) * 0.45})`;
+      gridCtx.stroke();
+    }
+    for (let i = 0; i < near.length; i++) {
+      for (let j = i + 1; j < near.length; j++) {
+        const d = Math.hypot(near[i].x - near[j].x, near[i].y - near[j].y);
+        if (d < LINK_RADIUS) {
+          gridCtx.beginPath();
+          gridCtx.moveTo(near[i].x, near[i].y);
+          gridCtx.lineTo(near[j].x, near[j].y);
+          gridCtx.strokeStyle = `rgba(${near[i].color}, ${(1 - d / LINK_RADIUS) * 0.25})`;
+          gridCtx.stroke();
+        }
+      }
+    }
+
+    // Click ripples
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const rip = ripples[i];
+      gridCtx.beginPath();
+      gridCtx.arc(rip.x, rip.y, rip.r, 0, Math.PI * 2);
+      gridCtx.strokeStyle = `rgba(${rip.color}, ${rip.alpha})`;
+      gridCtx.lineWidth = 1.5;
+      gridCtx.stroke();
+      // Second inner ring
+      if (rip.r > 20) {
+        gridCtx.beginPath();
+        gridCtx.arc(rip.x, rip.y, rip.r * 0.6, 0, Math.PI * 2);
+        gridCtx.strokeStyle = `rgba(${rip.color}, ${rip.alpha * 0.4})`;
+        gridCtx.lineWidth = 0.8;
+        gridCtx.stroke();
+      }
+      rip.r += 4;
+      rip.alpha *= 0.92;
+      if (rip.alpha < 0.01) ripples.splice(i, 1);
     }
 
     if (pulses.length < 10 && Math.random() < 0.03) spawnPulse();
