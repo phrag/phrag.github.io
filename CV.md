@@ -3,7 +3,7 @@
 > **Source of truth for index.html content.**
 > Edit here, then mirror changes to the corresponding section in `index.html`.
 
-**Contact:** phrag@pm.me · [phrag.github.io](https://phrag.github.io) · [linkedin.com/in/jordanbradley](https://www.linkedin.com/in/jordanbradley/) · [github.com/phrag](https://github.com/phrag) · Berlin, Germany
+**Contact:** phrag@pm.me · [phrag.github.io](https://phrag.github.io) · [github.com/phrag](https://github.com/phrag) · Berlin, Germany
 
 **GPG:** `7BB3 8573 9AA5 45E6  A812 AD48 2D0B B99D  CD45 7064`
 

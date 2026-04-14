@@ -507,35 +507,6 @@ a.edu-name:hover {
   position: relative;
 }
 
-.section-corners::before,
-.section-corners::after {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  opacity: 0;
-  transition: opacity 0.6s ease 0.2s;
-}
-
-.section-corners::before {
-  top: 24px;
-  left: 54px;
-  border-top: 1px solid rgba(0, 255, 100, 0.45);
-  border-left: 1px solid rgba(0, 255, 100, 0.45);
-}
-
-.section-corners::after {
-  bottom: 24px;
-  right: 54px;
-  border-bottom: 1px solid rgba(0, 180, 255, 0.45);
-  border-right: 1px solid rgba(0, 180, 255, 0.45);
-}
-
-.section.visible .section-corners::before,
-.section.visible .section-corners::after {
-  opacity: 1;
-}
-
 /* === Breathing auras === */
 @keyframes aura-breathe {
   0%, 100% { opacity: 0.6; }

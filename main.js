@@ -19,13 +19,6 @@
   );
   sections.forEach((s) => observer.observe(s));
 
-  // --- Corner accents (injected dynamically) ---
-  sections.forEach((section) => {
-    const corners = document.createElement('div');
-    corners.className = 'section-corners';
-    section.insertBefore(corners, section.firstChild);
-  });
-
   // --- Sidebar nav active state + sliding indicator ---
   const navLinks = document.querySelectorAll('.nav-link');
   const indicator = document.querySelector('.nav-indicator');
