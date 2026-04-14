@@ -30,7 +30,7 @@ I combine deep technical expertise with a people-first leadership approach, fost
 - **Built SoundCloud's enterprise security program from the ground up** — hired and mentored 5 security engineers, establishing the team that protects the company's workforce, infrastructure, and data
 - **Led the security stack transformation** from an unstable, high-maintenance Elastic SIEM ($262K/yr, 99% false positives) to an integrated SentinelOne + Google SecOps + ReliaQuest stack — saving $71K/yr while reducing false positives to ~30% across 28B+ events
 - **Drove detection engineering maturity** — writing YARA-L rules, building ingestion pipelines, tuning detections in Google SecOps (Chronicle), and reducing ingestion costs by focusing on security-relevant logs
-- **Defended against APT threat actor ShinyHunters** — led incident response during an active campaign, coordinating cross-functional response while maintaining on-call coverage through holidays
+- **Defended against APT threat actors** — led incident response during an active campaign, coordinating cross-functional response while maintaining on-call coverage through holidays
 - **Built SecRev**, an AI-powered security review platform that accelerates third-party software and AI tooling assessments, enabling the company to safely adopt AI tools in line with SoundCloud's AI-first strategy
 - **Established enterprise security programs** including Security Awareness Training, Bug Bounty (Bugcrowd), Context-Aware Access, Patch Management, JAMF security automation, and security policy frameworks
 - **Managed endpoint security** across 2000+ devices using SentinelOne EDR and JAMF, with automated remediation and compliance enforcement across macOS, Linux, and mobile platforms
