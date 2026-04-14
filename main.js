@@ -101,16 +101,22 @@
     el.addEventListener('mouseenter', () => scramble(el));
   });
 
-  // First-load: scramble name, hero title, tags, and nav links in sequence
+  // First-load: scramble name, hero section, and nav links in sequence
   window.addEventListener('load', () => {
     const name = document.querySelector('.sidebar-name');
     if (name) setTimeout(() => scramble(name), 100);
+    navLinks.forEach((link, i) => {
+      setTimeout(() => scramble(link), 150 + i * 100);
+    });
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) setTimeout(() => scramble(heroTitle), 300);
     const heroTags = document.querySelector('.hero-tags');
     if (heroTags) setTimeout(() => scramble(heroTags), 550);
-    navLinks.forEach((link, i) => {
-      setTimeout(() => scramble(link), 150 + i * 100);
+    document.querySelectorAll('.hero-summary').forEach((el, i) => {
+      setTimeout(() => scramble(el), 700 + i * 250);
+    });
+    document.querySelectorAll('.link-btn').forEach((el, i) => {
+      setTimeout(() => scramble(el), 1000 + i * 120);
     });
   });
 
