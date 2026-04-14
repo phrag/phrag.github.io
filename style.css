@@ -506,6 +506,25 @@ a.edu-name:hover {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* === Medium screens === */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .content {
+    margin-left: 220px;
+  }
+
+  .section {
+    padding: 60px 40px;
+  }
+
+  .job-tags {
+    width: 240px;
+  }
+}
+
 /* === Mobile === */
 @media (max-width: 960px) {
   .sidebar {
