@@ -374,12 +374,12 @@
     // Phase 1: pre-flash
     glitchCtx.fillStyle = 'rgba(200, 0, 120, 0.04)';
     glitchCtx.fillRect(0, 0, w, h);
-    document.body.style.filter = `hue-rotate(${hueShift}deg) saturate(1.8) brightness(1.08)`;
+    document.body.style.filter = `hue-rotate(${hueShift}deg) saturate(1.3) brightness(1.03)`;
 
     setTimeout(() => {
       glitchCtx.clearRect(0, 0, w, h);
       // Phase 2: main burst
-      drawStrips(8 + Math.floor(Math.random() * 6), 55, 0.15, true);
+      drawStrips(8 + Math.floor(Math.random() * 6), 55, 0.07, true);
 
       setTimeout(() => {
         glitchCtx.clearRect(0, 0, w, h);
@@ -389,7 +389,7 @@
         if (Math.random() > 0.2) {
           setTimeout(() => {
             document.body.style.filter = `hue-rotate(${-hueShift * 0.5}deg) brightness(0.94)`;
-            drawStrips(4 + Math.floor(Math.random() * 4), 30, 0.1, false);
+            drawStrips(4 + Math.floor(Math.random() * 4), 30, 0.05, false);
 
             setTimeout(() => {
               glitchCtx.clearRect(0, 0, w, h);
@@ -398,7 +398,7 @@
               // Phase 4: final twitch
               if (Math.random() > 0.4) {
                 setTimeout(() => {
-                  drawStrips(2 + Math.floor(Math.random() * 3), 18, 0.07, false);
+                  drawStrips(2 + Math.floor(Math.random() * 3), 18, 0.04, false);
                   setTimeout(() => glitchCtx.clearRect(0, 0, w, h), 35 + Math.random() * 40);
                 }, 50 + Math.random() * 70);
               }
@@ -410,7 +410,7 @@
   }
 
   (function scheduleGlitch() {
-    setTimeout(() => { runGlitch(); scheduleGlitch(); }, 6000 + Math.random() * 12000);
+    setTimeout(() => { runGlitch(); scheduleGlitch(); }, 15000 + Math.random() * 25000);
   })();
 
   // --- Film grain canvas ---
