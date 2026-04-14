@@ -370,74 +370,85 @@
   function runGlitch() {
     const w = glitchCanvas.width;
     const h = glitchCanvas.height;
-    const hueShift = 25 + Math.random() * 55;
+    const contentEl = document.querySelector('.content');
 
-    function drawStrips(count, maxOffset, alpha, noise) {
+    function noiseBurst(count) {
       for (let i = 0; i < count; i++) {
-        const sy  = Math.random() * h;
-        const sh  = 2 + Math.random() * 22;
-        const off = (Math.random() - 0.5) * maxOffset;
-        // Pink/red channel left
-        glitchCtx.fillStyle = `rgba(255, 20, 100, ${alpha})`;
-        glitchCtx.fillRect(off - 10, sy, w, sh);
-        // Cyan channel right
-        glitchCtx.fillStyle = `rgba(0, 220, 255, ${alpha})`;
-        glitchCtx.fillRect(off + 10, sy, w, sh);
-        // Bright tear
-        glitchCtx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.35})`;
-        glitchCtx.fillRect(off, sy, w, sh * 0.25);
-        // Random noise line
-        if (noise && Math.random() > 0.45) {
-          glitchCtx.fillStyle = `rgba(${Math.random() > 0.5 ? '255, 50, 150' : '0, 230, 255'}, ${alpha * 0.7})`;
-          glitchCtx.fillRect(0, Math.random() * h, w, 1);
-        }
-      }
-      // Occasional large displaced block
-      if (Math.random() > 0.5) {
-        const by  = Math.random() * h;
-        const bh  = 10 + Math.random() * 32;
-        const bx  = (Math.random() - 0.5) * 70;
-        glitchCtx.fillStyle = 'rgba(255, 40, 160, 0.07)';
-        glitchCtx.fillRect(bx, by, w * 0.65, bh);
+        glitchCtx.fillStyle = `rgba(${Math.random() > 0.5 ? '255,50,150' : '0,220,255'}, ${0.4 + Math.random() * 0.5})`;
+        glitchCtx.fillRect(Math.random() * w, Math.random() * h, 1 + Math.random() * 4, 1 + Math.random() * 3);
       }
     }
 
-    // Phase 1: pre-flash
-    glitchCtx.fillStyle = 'rgba(200, 0, 120, 0.04)';
-    glitchCtx.fillRect(0, 0, w, h);
-    document.body.style.filter = `hue-rotate(${hueShift}deg) saturate(1.3) brightness(1.03)`;
+    function strips(count, maxOff, alpha) {
+      for (let i = 0; i < count; i++) {
+        const sy  = Math.random() * h;
+        const sh  = 1 + Math.random() * 18;
+        const off = (Math.random() - 0.5) * maxOff;
+        glitchCtx.fillStyle = `rgba(255, 20, 100, ${alpha})`;
+        glitchCtx.fillRect(off - 10, sy, w, sh);
+        glitchCtx.fillStyle = `rgba(0, 220, 255, ${alpha})`;
+        glitchCtx.fillRect(off + 10, sy, w, sh);
+        glitchCtx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.25})`;
+        glitchCtx.fillRect(off, sy, w, sh * 0.2);
+      }
+    }
+
+    function scanSweep(onDone) {
+      const steps = 16;
+      const stepH = Math.ceil(h / steps);
+      let i = 0;
+      const id = setInterval(() => {
+        if (i > 0) glitchCtx.clearRect(0, (i - 1) * stepH, w, stepH + 1);
+        if (i < steps) {
+          glitchCtx.fillStyle = 'rgba(180, 80, 255, 0.06)';
+          glitchCtx.fillRect(0, i * stepH, w, stepH);
+          i++;
+        } else {
+          clearInterval(id);
+          glitchCtx.clearRect(0, 0, w, h);
+          if (onDone) onDone();
+        }
+      }, 9);
+    }
+
+    // Phase 1: noise crackle
+    noiseBurst(35 + Math.floor(Math.random() * 35));
 
     setTimeout(() => {
       glitchCtx.clearRect(0, 0, w, h);
-      // Phase 2: main burst
-      drawStrips(8 + Math.floor(Math.random() * 6), 55, 0.07, true);
+
+      // Phase 2: content shift + filter + strips
+      const shiftY = (Math.random() - 0.5) * 14;
+      const shiftX = (Math.random() - 0.5) * 5;
+      contentEl.style.transform = `translate(${shiftX}px, ${shiftY}px)`;
+      document.body.style.filter = `hue-rotate(${30 + Math.random() * 50}deg) contrast(1.15) brightness(1.04)`;
+      strips(6 + Math.floor(Math.random() * 5), 50, 0.07);
 
       setTimeout(() => {
-        glitchCtx.clearRect(0, 0, w, h);
+        contentEl.style.transform = '';
         document.body.style.filter = '';
+        glitchCtx.clearRect(0, 0, w, h);
 
-        // Phase 3: aftershock
-        if (Math.random() > 0.2) {
-          setTimeout(() => {
-            document.body.style.filter = `hue-rotate(${-hueShift * 0.5}deg) brightness(0.94)`;
-            drawStrips(4 + Math.floor(Math.random() * 4), 30, 0.05, false);
-
-            setTimeout(() => {
-              glitchCtx.clearRect(0, 0, w, h);
-              document.body.style.filter = '';
-
-              // Phase 4: final twitch
-              if (Math.random() > 0.4) {
-                setTimeout(() => {
-                  drawStrips(2 + Math.floor(Math.random() * 3), 18, 0.04, false);
-                  setTimeout(() => glitchCtx.clearRect(0, 0, w, h), 35 + Math.random() * 40);
-                }, 50 + Math.random() * 70);
-              }
-            }, 60 + Math.random() * 90);
-          }, 90 + Math.random() * 110);
-        }
-      }, 80 + Math.random() * 110);
-    }, 20 + Math.random() * 30);
+        // Phase 3: scanline sweep
+        scanSweep(() => {
+          // Phase 4: aftershock twitches
+          if (Math.random() > 0.3) {
+            let twitches = 1 + Math.floor(Math.random() * 3);
+            function twitch() {
+              if (twitches-- <= 0) return;
+              contentEl.style.transform = `translateX(${(Math.random() - 0.5) * 7}px)`;
+              strips(2 + Math.floor(Math.random() * 3), 22, 0.05);
+              setTimeout(() => {
+                contentEl.style.transform = '';
+                glitchCtx.clearRect(0, 0, w, h);
+                setTimeout(twitch, 50 + Math.random() * 80);
+              }, 35 + Math.random() * 35);
+            }
+            setTimeout(twitch, 60 + Math.random() * 80);
+          }
+        });
+      }, 80 + Math.random() * 80);
+    }, 30);
   }
 
   (function scheduleGlitch() {
