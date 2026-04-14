@@ -1,0 +1,352 @@
+/* === PDF / Print stylesheet for role-specific CVs === */
+/* Dark terminal aesthetic preserved for PDF export */
+/* IMPORTANT: When printing, enable "Background graphics" in print dialog */
+
+@page {
+  size: A4;
+  margin: 12mm 14mm;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow: visible;
+  height: auto;
+  display: block;
+  background: #080d0a;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 9pt;
+  line-height: 1.4;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Hide web-only interactive/animated elements */
+.atmosphere, #grain, .hamburger, .grid-overlay,
+.sidebar-nav, .sidebar-accent, .nav-indicator,
+.aura, .aura-center {
+  display: none !important;
+}
+
+/* === Header === */
+.sidebar {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 0 0 8pt 0;
+  border-right: none;
+  border-bottom: 1px solid rgba(0, 255, 100, 0.15);
+  display: block;
+  background: transparent;
+}
+
+.sidebar-identity {
+  margin-bottom: 0;
+}
+
+.sidebar-name {
+  font-size: 22pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow: none;
+  text-decoration: none;
+  display: inline;
+}
+
+.sidebar-name br {
+  display: none;
+}
+
+/* === Content layout === */
+.content {
+  margin-left: 0;
+  height: auto;
+  overflow: visible;
+}
+
+.section {
+  min-height: auto;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 12pt;
+  opacity: 1;
+  transform: none;
+  scroll-snap-align: none;
+  page-break-inside: auto;
+}
+
+/* === Profile === */
+#profile {
+  min-height: auto;
+  padding-top: 0;
+  margin-bottom: 8pt;
+}
+
+.hero-title {
+  font-size: 12pt;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
+  margin-bottom: 4pt;
+  margin-top: 2pt;
+}
+
+.hero-title br {
+  display: none;
+}
+
+.hero-tags {
+  font-size: 7pt;
+  letter-spacing: 3px;
+  color: rgba(0, 255, 100, 0.5);
+  margin-bottom: 8pt;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  margin-bottom: 8pt;
+}
+
+.sep-line {
+  display: block;
+  width: 30pt;
+  height: 1px;
+  background: rgba(0, 255, 100, 0.4);
+}
+
+.sep-dot {
+  display: block;
+  width: 4pt;
+  height: 4pt;
+  border-radius: 50%;
+  background: rgba(0, 200, 255, 0.3);
+}
+
+.hero-summary {
+  font-size: 9pt;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: none;
+}
+
+/* Print-only contact line */
+.print-contact {
+  display: block;
+  font-size: 8pt;
+  letter-spacing: 0.5px;
+  color: rgba(0, 255, 100, 0.45);
+  margin-top: 6pt;
+  padding-top: 6pt;
+  border-top: 1px solid rgba(0, 255, 100, 0.1);
+}
+
+/* Hide web-style links in print (replaced by .print-contact) */
+.hero-links {
+  display: none !important;
+}
+
+/* === Section titles === */
+.section-title {
+  font-size: 12pt;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #ffffff;
+  text-shadow: none;
+  margin-bottom: 8pt;
+  padding-bottom: 3pt;
+  border-bottom: 1px solid rgba(0, 255, 100, 0.2);
+}
+
+.subsection-title {
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: none;
+  margin-top: 10pt;
+  margin-bottom: 6pt;
+}
+
+/* === Jobs === */
+.job {
+  margin-bottom: 12pt;
+  display: block;
+  gap: 0;
+  page-break-inside: avoid;
+}
+
+.job-content {
+  min-width: 0;
+}
+
+.job-header {
+  margin-bottom: 3pt;
+}
+
+.job-title {
+  font-size: 11pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  display: inline;
+}
+
+.job-company {
+  font-size: 10pt;
+  color: rgba(0, 255, 100, 0.65);
+  margin-top: 1pt;
+  display: inline;
+}
+
+.job-company::before {
+  content: ' — ';
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.job-company a {
+  display: none;
+}
+
+.job-meta {
+  font-size: 8pt;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 1pt;
+}
+
+.job-desc {
+  font-size: 8.5pt;
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
+  margin-top: 1pt;
+}
+
+/* Bullet points */
+.job-bullets {
+  margin-top: 4pt;
+  padding-left: 0;
+  list-style: none;
+}
+
+.job-bullets li {
+  font-size: 8.5pt;
+  line-height: 1.5;
+  margin-bottom: 2pt;
+  padding-left: 12pt;
+  position: relative;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.job-bullets li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: rgba(0, 255, 100, 0.4);
+  font-weight: 700;
+}
+
+.job-bullets li strong {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+
+/* Tags — compact inline flow */
+.job-tags {
+  width: auto;
+  flex-shrink: initial;
+  position: static;
+  display: flex;
+  gap: 3pt;
+  flex-wrap: wrap;
+  margin-top: 5pt;
+}
+
+.tag {
+  font-size: 6.5pt;
+  letter-spacing: 1.5px;
+  padding: 1.5pt 5pt;
+  border: 0.5pt solid rgba(0, 255, 100, 0.25);
+  color: rgba(0, 255, 100, 0.55);
+}
+
+/* === Education === */
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5pt;
+}
+
+.edu-item {
+  page-break-inside: avoid;
+}
+
+.edu-name {
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.edu-meta {
+  font-size: 8pt;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 0;
+}
+
+/* === Skills — two-column grid === */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6pt 24pt;
+}
+
+.skill-group {
+  page-break-inside: avoid;
+}
+
+.skill-label {
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(0, 255, 100, 0.5);
+  margin-bottom: 1pt;
+}
+
+.skill-values {
+  font-size: 8.5pt;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* === About === */
+#about {
+  display: none;
+}
+
+/* === Page break hints === */
+#experience {
+  page-break-before: avoid;
+}
+
+#education {
+  page-break-before: auto;
+}
+
+#skills {
+  page-break-inside: avoid;
+}
+
+#volunteering {
+  page-break-inside: avoid;
+}

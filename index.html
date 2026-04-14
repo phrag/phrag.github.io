@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jordan Bradley — Security Engineering Leader. 25+ years building and scaling enterprise security programs. Berlin, DE.">
+  <meta property="og:title" content="Jordan Bradley — Security Engineering Leader">
+  <meta property="og:description" content="Security leader with 25+ years of experience building and scaling enterprise security programs. Berlin, DE.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://phrag.github.io">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Jordan Bradley — Security Engineering Leader">
+  <meta name="twitter:description" content="Security leader with 25+ years of experience building and scaling enterprise security programs. Berlin, DE.">
+  <title>Jordan Bradley — Security Engineering Leader</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+  <link rel="stylesheet" href="style.css" media="screen">
+  <link rel="stylesheet" href="print.css" media="print">
+</head>
+<body>
+  <!-- Atmospheric background -->
+  <div class="atmosphere">
+    <div class="aura"></div>
+    <div class="aura-center"></div>
+    <div class="grid-overlay"></div>
+  </div>
+  <canvas id="grain"></canvas>
+
+  <!-- Mobile hamburger -->
+  <button class="hamburger" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-identity">
+      <a href="#profile" class="sidebar-name">JORDAN<br>BRADLEY</a>
+      <div class="sidebar-accent">
+        <span class="accent-line"></span>
+        <span class="accent-dot"></span>
+      </div>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="#profile" class="nav-link">PROFILE</a></li>
+      <li><a href="#experience" class="nav-link">EXPERIENCE</a></li>
+      <li><a href="#education" class="nav-link">EDUCATION</a></li>
+      <li><a href="#skills" class="nav-link">SKILLS</a></li>
+      <li><a href="#volunteering" class="nav-link">COMMUNITY</a></li>
+      <li><a href="#about" class="nav-link">ABOUT ME</a></li>
+      <li class="nav-indicator"></li>
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <main class="content">
+
+    <!-- Profile -->
+    <section id="profile" class="section">
+      <h1 class="hero-title">Security Engineering<br>Leader</h1>
+      <div class="hero-tags">SECURITY OPERATIONS &middot; TEAM LEADERSHIP &middot; DEVSECOPS &middot; GRC</div>
+      <div class="separator">
+        <span class="sep-line"></span>
+        <span class="sep-dot"></span>
+      </div>
+      <p class="hero-summary">
+        Security leader with 25+ years of experience building and scaling enterprise security
+        programs across technology, finance, critical infrastructure, and media. From hiring
+        and mentoring teams to architecting full security stacks &mdash; endpoint protection,
+        SIEM/SOAR, incident response, GRC, and third-party risk management.
+      </p>
+      <p class="hero-summary" style="margin-top: 16px;">
+        I combine deep technical expertise with a people-first leadership approach, fostering
+        security cultures where teams feel empowered to engage with security rather than fear it.
+        Passionate about reducing risk through engineering, not just policy &mdash; and about
+        enabling teams to do their best work securely.
+      </p>
+      <div class="hero-links">
+        <a href="https://www.linkedin.com/in/jordanbradley/" target="_blank" rel="noopener" class="link-btn">LINKEDIN &#8599;</a>
+        <a href="https://github.com/phrag" target="_blank" rel="noopener" class="link-btn">GITHUB &#8599;</a>
+        <a href="mailto:phrag@pm.me" class="link-btn">CONTACT &#8599;</a>
+        <a href="Jordan_Bradley_CV.pdf" target="_blank" rel="noopener" class="link-btn link-btn--accent">PDF &#8599;</a>
+      </div>
+      <div class="print-contact">
+        phrag@pm.me &nbsp;&middot;&nbsp; linkedin.com/in/jordanbradley &nbsp;&middot;&nbsp; github.com/phrag &nbsp;&middot;&nbsp; Berlin, DE
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <h2 class="section-title">Experience</h2>
+
+      <!-- SoundCloud -->
+      <div class="job">
+        <div class="job-content">
+          <div class="job-header">
+            <h3 class="job-title">Senior Security Engineer</h3>
+            <div class="job-company">SoundCloud <a href="https://soundcloud.com" target="_blank" rel="noopener">&#8599;</a></div>
+            <div class="job-meta">Berlin, DE &middot; January 2019 &mdash; Present</div>
+            <div class="job-desc">Artist-first music platform with 400M+ tracks from 40M artists</div>
+          </div>
+          <ul class="job-bullets">
+            <li><strong>Built SoundCloud's enterprise security program from the ground up</strong> &mdash; hired and mentored 5 security engineers, establishing the team that protects the company's workforce, infrastructure, and data</li>
+            <li><strong>Led the security stack transformation</strong> from an unstable, high-maintenance Elastic SIEM ($262K/yr, 99% false positives) to an integrated SentinelOne + Google SecOps + ReliaQuest stack &mdash; saving $71K/yr while reducing false positives to ~30% across 28B+ events</li>
+            <li><strong>Drove detection engineering maturity</strong> &mdash; writing YARA-L rules, building ingestion pipelines, tuning detections in Google SecOps (Chronicle), and reducing ingestion costs by focusing on security-relevant logs</li>
+            <li><strong>Defended against APT threat actor ShinyHunters</strong> &mdash; led incident response during an active campaign, coordinating cross-functional response while maintaining on-call coverage through holidays</li>
+            <li><strong>Built SecRev</strong>, an AI-powered security review platform that accelerates third-party software and AI tooling assessments, enabling the company to safely adopt AI tools in line with SoundCloud's AI-first strategy</li>
+            <li><strong>Established enterprise security programs</strong> including Security Awareness Training, Bug Bounty (Bugcrowd), Context-Aware Access, Patch Management, JAMF security automation, and security policy frameworks</li>
+            <li><strong>Managed endpoint security</strong> across 2000+ devices using SentinelOne EDR and JAMF, with automated remediation and compliance enforcement across macOS, Linux, and mobile platforms</li>
+            <li><strong>Secured cloud infrastructure</strong> across AWS and GCP &mdash; IAM hardening, Google Workspace security posture management, container security for EKS/ECS microservices</li>
+            <li><strong>Led cross-functional collaboration</strong> with engineering, IT, HR, legal, and privacy teams on security initiatives, compliance requirements (SOC 2, ISO 27001, GDPR), and risk mitigation</li>
+            <li><strong>Organised internal security community initiatives</strong> including Capture the Flag competitions, SecTober events, and lock-picking workshops to build security awareness and engagement</li>
+            <li><strong>Personally tackled platform trust &amp; safety</strong> &mdash; discovered and removed thousands of accounts distributing hate speech and terrorist content; built tooling for bulk legal requests from law enforcement and counter-terrorism units</li>
+            <li><strong>Trained the German BKA</strong> (Federal Criminal Police) on encrypted communication to enable secure collaboration with SoundCloud on legal processes</li>
+            <li><strong>Developing AI guardrails and hardening</strong> frameworks to ensure safe adoption of generative AI across the organisation</li>
+          </ul>
+        </div>
+        <div class="job-tags">
+          <span class="tag">Team Leadership</span>
+          <span class="tag">Hiring &amp; Mentoring</span>
+          <span class="tag">Incident Response</span>
+          <span class="tag">SIEM / SOAR</span>
+          <span class="tag">Google SecOps</span>
+          <span class="tag">SentinelOne</span>
+          <span class="tag">ReliaQuest</span>
+          <span class="tag">Detection Engineering</span>
+          <span class="tag">JAMF</span>
+          <span class="tag">EDR</span>
+          <span class="tag">GRC</span>
+          <span class="tag">SOC 2</span>
+          <span class="tag">ISO 27001</span>
+          <span class="tag">GDPR</span>
+          <span class="tag">Bug Bounty</span>
+          <span class="tag">AWS</span>
+          <span class="tag">GCP</span>
+          <span class="tag">Google Workspace</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">EKS / ECS</span>
+          <span class="tag">DevSecOps</span>
+          <span class="tag">Threat Intelligence</span>
+          <span class="tag">AI Security</span>
+          <span class="tag">Agile</span>
+        </div>
+      </div>
+
+      <!-- Schuberg Philis -->
+      <div class="job">
+        <div class="job-content">
+          <div class="job-header">
+            <h3 class="job-title">Mission Critical Security Engineer</h3>
+            <div class="job-company">Schuberg Philis</div>
+            <div class="job-meta">Amsterdam, NL &middot; April 2015 &mdash; December 2018</div>
+            <div class="job-desc">100% uptime managed services for mission-critical infrastructure</div>
+          </div>
+          <ul class="job-bullets">
+            <li><strong>Secured critical infrastructure</strong> across Financial, Medical, Energy, Consumer, Nautical, and Public sectors in the Netherlands</li>
+            <li><strong>Built a Phishing Site Detection platform</strong> to discover and block phishing sites targeting major Dutch banks</li>
+            <li><strong>Discovered and helped take down a major Phishing-as-a-Service platform</strong> targeting over 180 banks and financial institutions globally</li>
+            <li><strong>Security reviewed a major ATM cash provider</strong> responsible for all cash machines across the Netherlands</li>
+            <li><strong>Built and led a Security Operations Center</strong> with Elastic Stack SIEM/SOAR, curated threat intelligence enrichment, and managed large-scale data ingestion</li>
+            <li><strong>Hired, mentored, and led teams</strong> of 4-6 security engineers</li>
+            <li><strong>Managed endpoint detection &amp; remediation</strong> across 2000+ endpoints</li>
+          </ul>
+        </div>
+        <div class="job-tags">
+          <span class="tag">Critical Infrastructure</span>
+          <span class="tag">SOC</span>
+          <span class="tag">Elastic Stack</span>
+          <span class="tag">Threat Intelligence</span>
+          <span class="tag">Phishing Detection</span>
+          <span class="tag">Team Leadership</span>
+          <span class="tag">Endpoint Security</span>
+          <span class="tag">Financial Sector</span>
+        </div>
+      </div>
+
+      <!-- TomTom -->
+      <div class="job">
+        <div class="job-content">
+          <div class="job-header">
+            <h3 class="job-title">Security Engineer</h3>
+            <div class="job-company">TomTom</div>
+            <div class="job-meta">Amsterdam, NL &middot; September 2011 &mdash; April 2015</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AOL -->
+      <div class="job">
+        <div class="job-content">
+          <div class="job-header">
+            <h3 class="job-title">Linux System Administrator</h3>
+            <div class="job-company">AOL</div>
+            <div class="job-meta">Newcastle, UK &middot; March 2010 &mdash; February 2011</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BBC -->
+      <div class="job">
+        <div class="job-content">
+          <div class="job-header">
+            <h3 class="job-title">Computer and Network Technician</h3>
+            <div class="job-company">BBC</div>
+            <div class="job-meta">UK &middot; January 2009 &mdash; January 2011</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IBM -->
+      <div class="job">
+        <div class="job-content">
+          <div class="job-header">
+            <h3 class="job-title">Technical Specialist, Linux HPC</h3>
+            <div class="job-company">IBM</div>
+            <div class="job-meta">Glasgow, UK &middot; July 2007 &mdash; September 2008</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thorn -->
+      <div class="job">
+        <div class="job-content">
+          <div class="job-header">
+            <h3 class="job-title">Electrical Engineering Apprenticeship</h3>
+            <div class="job-company">Thorn</div>
+            <div class="job-meta">Newcastle, UK &middot; July 2000 &mdash; July 2005</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="section">
+      <h2 class="section-title">Education</h2>
+      <div class="education-list">
+        <div class="edu-item">
+          <div class="edu-name">BSc Hons, Computer &amp; Network Engineering</div>
+          <div class="edu-meta">Northumbria University, Newcastle &middot; 2005 &mdash; 2009</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">HNC Electrical Engineering</div>
+          <div class="edu-meta">New College Durham, Newcastle &middot; 2000 &mdash; 2005</div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Certifications &amp; Courses</h3>
+      <div class="education-list">
+        <div class="edu-item">
+          <div class="edu-name">Leveraging AI in Identity Security</div>
+          <div class="edu-meta">CodeAcademy &middot; December 2024</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">DevSecOps and Containers</div>
+          <div class="edu-meta">CodeAcademy &middot; November 2024</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">DevSecOps in CI/CD</div>
+          <div class="edu-meta">CodeAcademy &middot; November 2024</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">Google Security Operations &mdash; Deep Dive</div>
+          <div class="edu-meta">Google &middot; August 2024</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">Introduction to Generative AI</div>
+          <div class="edu-meta">Google &middot; July 2024</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">AWS Security Essentials</div>
+          <div class="edu-meta">Linux Academy &middot; November 2018</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">Red Hat Certified Engineer</div>
+          <div class="edu-meta">Red Hat &middot; November 2012</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-label">Leadership</div>
+          <div class="skill-values">Team Building, Hiring, Mentoring, Performance Management, Agile Delivery, Roadmap Planning</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Security Operations</div>
+          <div class="skill-values">SIEM/SOAR, Detection Engineering, Incident Response, Threat Hunting, Threat Intelligence</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Endpoint Security</div>
+          <div class="skill-values">SentinelOne, JAMF, EDR, MDM, Patch Management, Context-Aware Access</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">GRC</div>
+          <div class="skill-values">SOC 2, ISO 27001, GDPR, Third-Party Risk Management, Security Policies, Vendor Reviews</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Cloud &amp; Infrastructure</div>
+          <div class="skill-values">AWS, GCP, Google Workspace, Kubernetes, EKS/ECS, Docker, CI/CD</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Security Platforms</div>
+          <div class="skill-values">Google SecOps (Chronicle), ReliaQuest, Elastic Stack, Bugcrowd, SentinelOne</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Engineering</div>
+          <div class="skill-values">Go, Bash, Python, Linux, DevSecOps, Security Automation</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">AI &amp; Emerging</div>
+          <div class="skill-values">AI Security Guardrails, GenAI Risk Assessment, AI-Powered Security Tooling</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community / Volunteering -->
+    <section id="volunteering" class="section">
+      <h2 class="section-title">Community</h2>
+      <div class="education-list">
+        <div class="edu-item">
+          <div class="edu-name">Privacy &amp; OpSec Workshop Organiser</div>
+          <div class="edu-meta">Privacy International &middot; Led workshops for activists with ex-intelligence operatives</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">EFF Member</div>
+          <div class="edu-meta">Electronic Frontier Foundation</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">Tor Node Operator</div>
+          <div class="edu-meta">The Tor Project</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">Community Support Staff</div>
+          <div class="edu-meta">Slackware Linux</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">Signal Contributor</div>
+          <div class="edu-meta">Signal Foundation</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <h2 class="section-title">About Me</h2>
+      <p class="about-text">
+        Security has been in my DNA for over 25 years. I started with electrical engineering
+        and Linux systems, grew through roles at IBM, BBC, AOL, TomTom, and Schuberg Philis,
+        and have spent the last 7.5 years building security at SoundCloud from the ground up.
+      </p>
+      <p class="about-text" style="margin-top: 16px;">
+        I believe the best security teams are the ones people <em>want</em> to work with.
+        I've built a culture at SoundCloud where employees feel safe bringing security problems
+        forward without fear of blame &mdash; because that's how you actually reduce risk.
+      </p>
+      <p class="about-text" style="margin-top: 16px;">
+        Beyond work, I'm passionate about privacy, open source, and digital rights.
+        I've run Tor nodes, organised OpSec workshops for activists, and contributed to
+        projects that protect people's freedom online.
+      </p>
+      <p class="about-text" style="margin-top: 16px;">
+        I've been on SoundCloud as a listener for 15 years &mdash; long before I joined the company.
+        Music is a constant in my life, and protecting the platform that connects artists
+        and fans is something I take personally.
+      </p>
+    </section>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
