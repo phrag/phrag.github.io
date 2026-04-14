@@ -57,14 +57,15 @@
   // --- Text scramble ---
   const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%><|/\\';
 
-  function scramble(el) {
+  function scramble(el, slow) {
     const savedHTML = el.innerHTML;
     const text = el.textContent;
     if (!text.trim()) return;
     if (el._scrambling) return;
     el._scrambling = true;
     let frame = 0;
-    const frames = 14;
+    const frames   = slow ? 28 : 14;
+    const interval = slow ? 35 : 18;
     const id = setInterval(() => {
       if (frame >= frames) {
         el.innerHTML = savedHTML;
@@ -79,13 +80,13 @@
         return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
       }).join('');
       frame++;
-    }, 18);
+    }, interval);
   }
 
   // Nav links
   navLinks.forEach((link) => {
     link.addEventListener('mouseenter', () => scramble(link));
-    link.addEventListener('touchstart', () => scramble(link), { passive: true });
+    link.addEventListener('touchstart', () => scramble(link, true), { passive: true });
   });
 
   // Headings and short labels throughout the page
@@ -93,7 +94,7 @@
     '.section-title, .subsection-title, .job-title, .edu-name, .skill-label, .hero-tags, .job-meta'
   ).forEach((el) => {
     el.addEventListener('mouseenter', () => scramble(el));
-    el.addEventListener('touchstart', () => scramble(el), { passive: true });
+    el.addEventListener('touchstart', () => scramble(el, true), { passive: true });
   });
 
   // First-load: scramble name, hero section, and nav links in sequence
