@@ -86,6 +86,7 @@
     const line = (axis === 'h'
       ? Math.floor(Math.random() * rows)
       : Math.floor(Math.random() * cols)) * CELL;
+    const colors = ['0, 255, 100', '0, 180, 255', '80, 140, 255'];
     pulses.push({
       axis,
       line,
@@ -93,6 +94,7 @@
       speed: 0.8 + Math.random() * 1.4,
       alpha: 0.2 + Math.random() * 0.25,
       tail: 60 + Math.random() * 60,
+      color: colors[Math.floor(Math.random() * colors.length)],
     });
   }
 
@@ -103,7 +105,7 @@
 
     // Static base grid
     gridCtx.lineWidth = 1;
-    gridCtx.strokeStyle = 'rgba(0, 255, 100, 0.04)';
+    gridCtx.strokeStyle = 'rgba(140, 80, 255, 0.08)';
     for (let x = 0; x <= w; x += CELL) {
       gridCtx.beginPath(); gridCtx.moveTo(x, 0); gridCtx.lineTo(x, h); gridCtx.stroke();
     }
@@ -120,8 +122,8 @@
       } else {
         grad = gridCtx.createLinearGradient(0, p.pos - p.tail, 0, p.pos);
       }
-      grad.addColorStop(0, 'rgba(0, 255, 100, 0)');
-      grad.addColorStop(1, `rgba(0, 255, 100, ${p.alpha})`);
+      grad.addColorStop(0, `rgba(${p.color}, 0)`);
+      grad.addColorStop(1, `rgba(${p.color}, ${p.alpha})`);
       gridCtx.strokeStyle = grad;
       gridCtx.lineWidth = 1.5;
       gridCtx.beginPath();
